@@ -17,3 +17,30 @@ new_inventory = [
     [67, "Bowling Ball"],
     [7, "Toothpaste"]
 ]
+
+def update_inventory(*arrays):
+    #convert current inventory to dictionary
+    inventory_dict = {item[1]: item[0] for item in current_inventory} 
+
+    #update the dictionary with new inventory items
+    for quantity, item in new_inventory:
+        if item in inventory_dict:
+            inventory_dict[item] += quantity
+        else:
+            inventory_dict[item] = quantity
+            
+
+    #convert dictionary back to a list of lists
+    updated_inventory = [[quantity, item] for item, quantity in inventory_dict.items()]
+
+    #sort the updated inventory alphabetically by item name
+    updated_inventory.sort(key=lambda x: x[1])
+
+    #print updated inventory
+    for item in updated_inventory:
+        print(item)
+    
+
+update_inventory(current_inventory, new_inventory)
+
+
